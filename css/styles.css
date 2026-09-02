@@ -1,0 +1,464 @@
+/* Core CSS Variables and Theme definitions */
+:root {
+  /* Pastel Light Theme - Default Calm */
+  --bg-primary: #f4f6f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --text-primary: #2d3748;
+  --text-secondary: #718096;
+  --border-color: #e2e8f0;
+
+  /* Accent Colors - Calm (Blue/Green Pastels) */
+  --accent-primary: #6b9ac4;
+  --accent-primary-hover: #5583ad;
+  --accent-secondary: #97c1a9;
+  --accent-gradient: linear-gradient(135deg, #a8d8ea 0%, #aa96da 100%);
+  --fader-thumb: #6b9ac4;
+  --canvas-bg: #1e293b;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --transition: all 0.3s ease;
+}
+
+/* Color Psychology Moods for Light Theme */
+[data-theme="light"][data-mood="calm"] {
+  --accent-primary: #4a90e2;
+  --accent-secondary: #7ed321;
+  --accent-gradient: linear-gradient(135deg, #b8e994 0%, #78e08f 100%);
+  --fader-thumb: #4a90e2;
+}
+
+[data-theme="light"][data-mood="energy"] {
+  --accent-primary: #f39c12;
+  --accent-secondary: #9b59b6;
+  --accent-gradient: linear-gradient(135deg, #f8c291 0%, #e77f67 100%);
+  --fader-thumb: #e67e22;
+}
+
+[data-theme="light"][data-mood="balance"] {
+  --accent-primary: #00cec9;
+  --accent-secondary: #fd79a8;
+  --accent-gradient: linear-gradient(135deg, #81ecec 0%, #74b9ff 100%);
+  --fader-thumb: #00cec9;
+}
+
+/* Dark Theme - Tech / Neon Aesthetic */
+[data-theme="dark"] {
+  --bg-primary: #0f172a;
+  --bg-card: #1e293b;
+  --bg-card-hover: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border-color: #334155;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.4);
+  --shadow-md: 0 6px 18px rgba(0,0,0,0.5);
+  --canvas-bg: #090d16;
+}
+
+[data-theme="dark"][data-mood="calm"] {
+  --accent-primary: #00f2fe;
+  --accent-secondary: #4facfe;
+  --accent-gradient: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
+  --fader-thumb: #00f2fe;
+}
+
+[data-theme="dark"][data-mood="energy"] {
+  --accent-primary: #ff0844;
+  --accent-secondary: #ffb199;
+  --accent-gradient: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
+  --fader-thumb: #ff0844;
+}
+
+[data-theme="dark"][data-mood="balance"] {
+  --accent-primary: #a855f7;
+  --accent-secondary: #ec4899;
+  --accent-gradient: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  --fader-thumb: #a855f7;
+}
+
+/* Base Body Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  transition: var(--transition);
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.app-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  gap: 1rem;
+}
+
+.app-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.app-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.theme-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+select {
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  outline: none;
+  cursor: pointer;
+}
+
+/* Card layout */
+.card {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card h2 {
+  font-size: 1.15rem;
+  margin-bottom: 0.75rem;
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Buttons */
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: var(--accent-primary);
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: var(--text-secondary);
+  color: #fff;
+}
+
+.btn-danger {
+  background-color: #e53e3e;
+  color: #fff;
+}
+
+.btn-preset {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-preset.active, .btn-preset:hover:not(:disabled) {
+  background-color: var(--accent-primary);
+  color: #fff;
+}
+
+.btn-action {
+  background: var(--accent-gradient);
+  color: #fff;
+  font-size: 0.95rem;
+  padding: 0.6rem 1.2rem;
+}
+
+/* Dropzone & Upload */
+.file-dropzone {
+  position: relative;
+  border: 2px dashed var(--accent-primary);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  background-color: var(--bg-primary);
+}
+
+.file-dropzone:hover {
+  background-color: var(--bg-card-hover);
+}
+
+.file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.dropzone-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.file-name-display {
+  display: block;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--accent-primary);
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.time-display {
+  margin-left: auto;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.seek-bar-container {
+  margin-top: 0.75rem;
+}
+
+.seek-bar-container input[type="range"] {
+  width: 100%;
+}
+
+/* Canvas Visualizer */
+.visualizer-container {
+  width: 100%;
+  height: 240px;
+  background-color: var(--canvas-bg);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.3);
+}
+
+canvas#spectrum-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.visualizer-mode-selector {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Report Grid */
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.report-item {
+  background-color: var(--bg-primary);
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+}
+
+.report-item span {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+}
+
+.report-item strong {
+  color: var(--text-primary);
+  margin-top: 0.2rem;
+  font-size: 0.95rem;
+}
+
+/* Faders Style (Sound Board / Mesa de Som) */
+.faders-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  gap: 1rem;
+  padding: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.fader-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 70px;
+}
+
+.fader-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.fader-track {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  background: var(--bg-primary);
+  border-radius: 20px;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+  width: 40px;
+}
+
+.fader-vertical {
+  -webkit-appearance: slider-vertical;
+  writing-mode: bt-lr;
+  width: 12px;
+  height: 130px;
+  accent-color: var(--accent-primary);
+  cursor: pointer;
+}
+
+.fader-val {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+}
+
+/* Therapy Section */
+.therapy-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.therapy-block {
+  background: var(--bg-primary);
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+}
+
+.therapy-block h3 {
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.section-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.preset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.custom-pitch, .tone-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.tone-volume {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Export Section */
+.export-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.export-status {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+}
+
+/* Footer */
+.app-footer {
+  text-align: center;
+  padding: 1.5rem 0;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-color);
+}
